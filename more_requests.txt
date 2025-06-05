@@ -1,0 +1,30 @@
+Requête 1 : Le nom, la description et le prix de chacun des produits.
+SELECT products.name, products.description, products.price FROM `products`
+
+Requête 2 : Le nom, la description et le prix de chacun des produits des produits de moins de 42€ du plus cher au moins cher.
+SELECT products.name, products.description, products.price FROM `products`
+WHERE products.price < 42
+ORDER BY products.price DESC
+
+Requête 3 : Le nom de la ville, le code postal, le numéro de rue et l'intitulé de la rue des adresses.
+SELECT addresses.city, addresses.postal_code, addresses.number, addresses.street FROM `addresses`
+
+Requête 4 : Le nom de la ville, le code postal, le numéro de rue et l'intitulé de la rue des adresses dont le nom de la ville commence par A.
+SELECT addresses.city, addresses.postal_code, addresses.number, addresses.street FROM `addresses`
+WHERE LEFT(addresses.street, 1) = "a"
+
+Requête 5 : La liste de tous les utilisateurs
+SELECT * FROM `users` ORDER BY `users`.`id` ASC
+
+Requête 6 : La liste de tous les utilisateurs rangée par date de naissance
+SELECT users.* FROM `users` ORDER BY users.birthdate
+
+Requête 7 : La liste de tous les utilisateurs rangée par date de naissance de plus de 5O ans
+SELECT users.* FROM `users` 
+WHERE YEAR(users.birthdate) < (YEAR(CURRENT_DATE())-50) 
+ORDER BY `users`.`birthdate`
+
+Requête 8 : La liste de tous les utilisateurs rangée par date de naissance, de plus de 5O ans et en ajoutant une colonne nommé "Age" pour afficher leur âge calculé actuel
+SELECT users.*, YEAR(CURRENT_DATE())-YEAR(users.birthdate) AS Age FROM `users` 
+WHERE YEAR(users.birthdate) < (YEAR(CURRENT_DATE())-50)  
+ORDER BY `users`.`birthdate`
